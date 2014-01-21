@@ -6,8 +6,8 @@
  */
 define(function(require, exports, module) {
 
-var baseLanguageHandler = require("ext/language/base_handler");
-var CSSLint = require("ext/csslanguage/csslint");
+var baseLanguageHandler = require("plugins/c9.ide.language/base_handler");
+var CSSLint = require("./csslint");
 var handler = module.exports = Object.create(baseLanguageHandler);
 
 handler.handlesLanguage = function(language) {
