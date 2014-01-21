@@ -7,7 +7,7 @@ define(function(require, exports, module) {
 
 var assert = require("ace/test/assertions");
 //var handler = require('ext/jslanguage/jshint');
-var LanguageWorker = require('ext/language/worker').LanguageWorker;
+var LanguageWorker = require('plugins/c9.ide.language/worker').LanguageWorker;
 var EventEmitter = require("ace/lib/event_emitter").EventEmitter;
 
 module.exports = {
@@ -15,14 +15,12 @@ module.exports = {
     "test integration base case" : function(next) {
         var emitter = Object.create(EventEmitter);
         emitter.emit = emitter._dispatchEvent;
-        emitter.on("markers", function(markers) {
-            // false color & empty selector
+        var worker = new LanguageWorker(emitter);
+        var handler = require("plugins/c9.ide.language.css/css_handler");
+        handler.analyze("#hello { color: 1px; } #nonused{}", null, function(markers) {
             assert.equal(markers.length, 2);
             next();
         });
-        var worker = new LanguageWorker(emitter);
-        worker.register("ext/csslanguage/css_handler");
-        worker.switchFile("test.css", "css", "#hello { color: 1px; } #nonused{}", null, "");
     }
 };
 
