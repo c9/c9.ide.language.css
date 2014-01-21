@@ -7,7 +7,7 @@
 define(function(require, exports, module) {
 
 var baseLanguageHandler = require("plugins/c9.ide.language/base_handler");
-var CSSLint = require("./csslint");
+var CSSLint = require("ace/mode/css/csslint");
 var handler = module.exports = Object.create(baseLanguageHandler);
 
 handler.handlesLanguage = function(language) {
@@ -56,7 +56,7 @@ var CSSLint_RULESET = {
 handler.analyzeSync = function(value, ast) {
     value = value.replace(/^(#!.*\n)/, "//$1");
 
-    var results = CSSLint.verify(value, CSSLint_RULESET);
+    var results = CSSLint.CSSLint.verify(value, CSSLint_RULESET);
     var warnings = results.messages;
 
     return warnings.map(function(warning) {
