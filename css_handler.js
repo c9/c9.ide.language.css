@@ -19,7 +19,7 @@ handler.analyze = function(value, ast, callback) {
 };
 
 var CSSLint_RULESET = {
-    "adjoining-classes"           : 1,
+    "adjoining-classes"           : 0,
     "box-model"                   : 1,
     "box-sizing"                  : 1,
     "compatible-vendor-prefixes"  : 1,
