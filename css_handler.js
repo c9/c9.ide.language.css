@@ -72,4 +72,8 @@ handler.analyzeSync = function(value, ast) {
     });
 };
 
+handler.getIdentifierRegex = function() {
+    return (/[_a-zA-Z0-9-]*/);
+};
+
 });
