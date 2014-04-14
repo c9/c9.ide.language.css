@@ -50,8 +50,13 @@ var CSSLint_RULESET = {
     "universal-selector"          : 1,
     "unqualified-attributes"      : 1,
     "vendor-prefix"               : 1,
-    "zero-units"                  : 1
+    "zero-units"                  : 0
 };
+
+var INFO_MARKERS = [
+    "gradients",
+    "compatible-vendor-prefixes",
+]
 
 handler.analyzeSync = function(value, ast) {
     value = value.replace(/^(#!.*\n)/, "//$1");
@@ -60,6 +65,8 @@ handler.analyzeSync = function(value, ast) {
     var warnings = results.messages;
 
     return warnings.map(function(warning) {
+        if (INFO_MARKERS.indexOf(warning.rule.id) > -1)
+            warning.type = "info";
         return {
             pos: {
                 sl: warning.line-1,
