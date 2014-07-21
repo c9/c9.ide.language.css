@@ -61,8 +61,8 @@ var INFO_MARKERS = [
 handler.analyzeSync = function(value, ast) {
     value = value.replace(/^(#!.*\n)/, "//$1");
 
-    var results = CSSLint.CSSLint.verify(value, CSSLint_RULESET);
-    var warnings = results.messages;
+    var results = value && CSSLint.CSSLint.verify(value, CSSLint_RULESET);
+    var warnings = results ? results.messages : [];
 
     return warnings.map(function(warning) {
         if (INFO_MARKERS.indexOf(warning.rule.id) > -1)
