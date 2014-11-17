@@ -11,10 +11,13 @@ var CSSLint = require("ace/mode/css/csslint");
 var handler = module.exports = Object.create(baseLanguageHandler);
 
 handler.handlesLanguage = function(language) {
-    return language === "css";
+    return language === "css" || language === "less";
 };
 
 handler.analyze = function(value, ast, callback) {
+    if (this.language === "less")
+        return callback();
+    
     callback(handler.analyzeSync(value, ast));
 };
 
