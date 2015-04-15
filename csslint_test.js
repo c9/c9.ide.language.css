@@ -1,20 +1,20 @@
 "use server";
+"use mocha";
 
+require("c9/inline-mocha")(module);
+require("../../test/setup_paths");
 if (typeof process !== "undefined") {
     require("amd-loader");
-    require("../../test/setup_paths");
 }
 
-define(function(require, exports, module) {
 
 var assert = require("ace/test/assertions");
-//var handler = require('ext/jslanguage/jshint');
 var LanguageWorker = require('plugins/c9.ide.language/worker').LanguageWorker;
 var EventEmitter = require("ace/lib/event_emitter").EventEmitter;
 
-module.exports = {
-
-    "test integration base case" : function(next) {
+describe(__filename, function() {
+    
+    it("integration base case", function(next) {
         var emitter = Object.create(EventEmitter);
         emitter.emit = emitter._dispatchEvent;
         var worker = new LanguageWorker(emitter);
@@ -23,11 +23,6 @@ module.exports = {
             assert.equal(markers.length, 2);
             next();
         });
-    }
-};
-
+    });
 });
 
-if (typeof module !== "undefined" && module === require.main) {
-    require("asyncjs").test.testcase(module.exports).exec()
-}
