@@ -13,7 +13,7 @@ handler.handlesLanguage = function(language) {
     return language === "css" || language === "less";
 };
 
-handler.analyze = function(value, ast, options, callback) {
+handler.analyze = function(value, ast, callback) {
     if (this.language === "less")
         return callback();
     
