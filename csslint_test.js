@@ -19,7 +19,7 @@ describe(__filename, function() {
         emitter.emit = emitter._dispatchEvent;
         var worker = new LanguageWorker(emitter);
         var handler = require("plugins/c9.ide.language.css/css_handler");
-        handler.analyze("#hello { color: 1px; } #nonused{}", null, function(markers) {
+        handler.analyze("#hello { color: 1px; } #nonused{}", null, {}, function(markers) {
             assert.equal(markers.length, 2);
             next();
         });
