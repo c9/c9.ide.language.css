@@ -9,7 +9,7 @@ if (typeof process !== "undefined") {
 
 
 var assert = require("ace/test/assertions");
-var LanguageWorker = require('plugins/c9.ide.language/worker').LanguageWorker;
+var LanguageWorker = require('plugins/c9.ide.language.core/worker').LanguageWorker;
 var EventEmitter = require("ace/lib/event_emitter").EventEmitter;
 
 describe(__filename, function() {
